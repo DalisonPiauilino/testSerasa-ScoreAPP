@@ -1,0 +1,64 @@
+<div class="pt-3 pb-2 mb-3 border-bottom">
+  <h2 class="h2">Add Afinidade</h2>
+</div>
+<form [formGroup]="afinidadeForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 mb-2">
+          <label>Região</label>
+          <input
+            type="text"
+            formControlName="regiao"
+            class="form-control"
+            required
+          />
+          <p *ngIf="af['regiao'].touched && af['regiao'].invalid" class="error">
+            <sup>*</sup>Digite a região
+          </p>
+        </div>
+        <div class="col-xl-3 col-lg-3 mb-2">
+          <label>Estados</label>
+          <ng-multiselect-dropdown
+            [placeholder]="'Selecione os estados'"
+            [settings]="dropdownSettings"
+            [data]="estados"
+            formControlName="estados"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            class="form-control form-control-multi-select"
+            required
+          >
+          </ng-multiselect-dropdown>
+          <!-- <input
+            type="number"
+            formControlName="estados"
+            class="form-control"
+            required
+            [min]="0"
+            [max]="1000"
+          /> -->
+          <p *ngIf="af['estados'].touched && af['estados'].invalid" class="error">
+            <sup>*</sup>Digite os estados
+          </p>
+        </div>
+      </div>
+      <div class="form-group text-right">
+        <!-- <button
+          type="button"
+          class="btn btn-secondary gap-right"
+          (click)="ResetForm()"
+        >
+          Reset
+        </button> -->
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!afinidadeForm.valid"
+        >
+          Add Score
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

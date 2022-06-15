@@ -1,0 +1,67 @@
+<div class="pt-3 pb-2 mb-3 border-bottom">
+  <h2 class="h2">Add Score</h2>
+</div>
+<form [formGroup]="scoreForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 mb-2">
+          <label>Nome</label>
+          <input
+            type="text"
+            formControlName="descricao"
+            class="form-control"
+            required
+          />
+          <p *ngIf="sf['descricao'].touched && sf['descricao'].invalid" class="error">
+            <sup>*</sup>Digite a descrição do score
+          </p>
+        </div>
+        <div class="col-xl-3 col-lg-3 mb-2">
+          <label>Score Inicial</label>
+          <input
+            type="number"
+            formControlName="scoreInicial"
+            class="form-control"
+            required
+            [min]="0"
+            [max]="1000"
+          />
+          <p *ngIf="sf['scoreInicial'].touched && sf['scoreInicial'].invalid" class="error">
+            <sup>*</sup>Digite o Score Inicial
+          </p>
+        </div>
+        <div class="col-xl-3 col-lg-3 mb-2">
+          <label>Score Final</label>
+          <input
+            type="number"
+            formControlName="scoreFinal"
+            class="form-control"
+            required
+            [min]="0"
+            [max]="1000"
+          />
+          <p *ngIf="sf['scoreFinal'].touched && sf['scoreFinal'].invalid" class="error">
+            <sup>*</sup>Digite o Score Final
+          </p>
+        </div>
+      </div>
+      <div class="form-group text-right">
+        <!-- <button
+          type="button"
+          class="btn btn-secondary gap-right"
+          (click)="ResetForm()"
+        >
+          Reset
+        </button> -->
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!scoreForm.valid"
+        >
+          Add Score
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

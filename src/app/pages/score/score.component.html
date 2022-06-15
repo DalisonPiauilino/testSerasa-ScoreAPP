@@ -1,0 +1,49 @@
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h2 class="h2">Scores List</h2>
+  <a
+    routerLink="/cadastro"
+    class="btn btn-success"
+    *ngIf="hideWhenNoScore"
+  >
+    Add Score
+  </a>
+</div>
+<div class="pricing-header mx-auto">
+  <div class="no-data text-center" *ngIf="preLoader">
+    <img src="assets/preloader.gif" class="preloader-icon" alt="No score" />
+  </div>
+  <div class="no-data text-center" *ngIf="noData">
+    <img src="assets/no-score.svg" class="nodata-msg" alt="No score" />
+    <p class="nodata-msg">No score added yet!</p>
+    <a routerLink="/cadastro" class="btn btn-success"> Add Score </a>
+  </div>
+  <div class="table-responsive" *ngIf="hideWhenNoScore">
+    <table
+      class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Descrição</th>
+          <th scope="col">Score Inicial</th>
+          <th scope="col">Score Final</th>
+          <th class="text-center" scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor=" let score of scores; let i = index">
+          <td>{{ score.descricao }}</td>
+          <td>{{ score.scoreInicial }}</td>
+          <td>{{ score.scoreFinal }}</td>
+          <td class="text-center action-block">
+            <span
+              class="btn btn-outline-danger btn-sm"
+              (click)="editScore(score)"
+            >Edit</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
